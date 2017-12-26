@@ -393,7 +393,7 @@ module.exports = function (APP) {
                 }
             } else if (formItem.type === 'location-search' || formItem.type === 'datetime' || formItem.type === 'number' || formItem.type === 'text' || formItem.type === 'image') {
                 if (responseItem.value) {
-                    fields.value = responseItem.value;
+                    fields.value = APP.util.stripHtmlTags(responseItem.value);
                 } else {
                     savedResponseItemsCount += 1;
                     return finished(transaction, responseId);
@@ -435,70 +435,74 @@ module.exports = function (APP) {
             return callback(APP.ERROR.INVALID_PARAMETERS);
         }
 
-        APP.lib.db.query(APP.SQL.selectFormItems, [null, params.form_id, null, null], function (err, formItems) {
-            if (err) { 
-                return APP.serverError('updateResponse() > SQL.selectFormItems', err, callback); 
-            }
+        APP.AUTH.validUserPermission(params, APP.PERMISSION.ADMINISTRATOR, function (err, user) {
+            if (err || !user) { return callback(APP.ERROR.INVALID_PERMISSION); }
 
-            params.items = cleanupAndConnectResponseItemsWithFormItems(params.items, formItems, true);
-
-            if (!params.items.length) {
-                return callback(APP.ERROR.INVALID_PARAMETERS);
-            }
-
-            var queries = [];
-
-            queries.push({
-                table: 'form_responses',
-                fields: { updated_at: new Date() },
-                where: { id: params.response_id }
-            });
-
-            params.items.forEach(function (rItem) {
-                var fields = {};
-
-                if (!rItem.response_item_id) {
-                    fields = {
-                        response_id: params.response_id,
-                        form_id: params.form_id,
-                        item_id: rItem._formItem.id,
-                        option_id: null,
-                        value: null
-                    };
+            APP.lib.db.query(APP.SQL.selectFormItems, [null, params.form_id, null, null], function (err, formItems) {
+                if (err) { 
+                    return APP.serverError('updateResponse() > SQL.selectFormItems', err, callback); 
                 }
 
-                if (isItemWithOptionId(rItem._formItem.type)) {
-                    fields.option_id = rItem.option_id;
-                } else if (isItemWithRawValue(rItem._formItem.type)) {
-                    fields.value = rItem.value;
-                } else {
-                    return;
+                params.items = cleanupAndConnectResponseItemsWithFormItems(params.items, formItems, true);
+
+                if (!params.items.length) {
+                    return callback(APP.ERROR.INVALID_PARAMETERS);
                 }
 
-                var query = {
-                    table: 'form_response_items',
-                    fields: fields
-                };
+                var queries = [];
 
-                if (rItem.response_item_id) {
-                    query.where = { id: rItem.response_item_id };
-                }
+                queries.push({
+                    table: 'form_responses',
+                    fields: { updated_at: new Date() },
+                    where: { id: params.response_id }
+                });
 
-                queries.push(query);
-            });
+                params.items.forEach(function (rItem) {
+                    var fields = {};
 
-            APP.lib.db.beginTransaction(function (transaction) {
-                transaction.query(queries, function (err) {
-                    if (err) { 
-                        transaction.rollback(); 
-                        return APP.serverError('updateResponse()', err, callback);
+                    if (!rItem.response_item_id) {
+                        fields = {
+                            response_id: params.response_id,
+                            form_id: params.form_id,
+                            item_id: rItem._formItem.id,
+                            option_id: null,
+                            value: null
+                        };
                     }
-                    transaction.commit();
-                    APP.FORM.getResponse({ 
-                        id: params.response_id, 
-                        lang: params.lang, 
-                        session_token: params.session_token 
-                    }, callback);
+
+                    if (isItemWithOptionId(rItem._formItem.type)) {
+                        fields.option_id = rItem.option_id;
+                    } else if (isItemWithRawValue(rItem._formItem.type)) {
+                        fields.value = APP.util.stripHtmlTags(rItem.value);
+                    } else {
+                        return;
+                    }
+
+                    var query = {
+                        table: 'form_response_items',
+                        fields: fields
+                    };
+
+                    if (rItem.response_item_id) {
+                        query.where = { id: rItem.response_item_id };
+                    }
+
+                    queries.push(query);
+                });
+
+                APP.lib.db.beginTransaction(function (transaction) {
+                    transaction.query(queries, function (err) {
+                        if (err) { 
+                            transaction.rollback(); 
+                            return APP.serverError('updateResponse()', err, callback);
+                        }
+                        transaction.commit();
+                        APP.FORM.getResponse({ 
+                            id: params.response_id, 
+                            lang: params.lang, 
+                            session_token: params.session_token 
+                        }, callback);
+                    });
                 });
             });
         });
