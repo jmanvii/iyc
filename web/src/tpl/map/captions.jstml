@@ -1,0 +1,12 @@
+<ul id="map-categories" class="map-categories">
+    <li class="mpc-all-items">
+        <svg><use xlink:href="/img/sprite.svg#circle-2"></use></svg>
+        <span><%=APP.LANG.text('map-caption-all-items')%></span>
+    </li>
+    <% data.options.forEach(function (option) { %>
+        <li class="mpc-item mpc-item-<%=option.settings.icon%>" data-item-id="<%=data.id%>" data-option-id="<%=option.id%>">
+            <svg><use xlink:href="/img/sprite.svg#<%=option.settings.icon%>"></use></svg>
+            <span><%=option.label%></span>
+        </li>
+    <% }); %>
+</ul>

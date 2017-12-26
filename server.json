@@ -1,0 +1,8 @@
+{
+    "uid": "EXAMPLE",
+    "append": true,
+    "watch": false,
+    "script": "api.js",
+    "sourceDir": "/var/www/example/api",
+    "args": ["--dbuser", "postgres", "--dbname", "rtyuirtyui", "--dbpass", "rtyuiortyui", "--pghost", "127.0.0.1", "--pgport", 5432]
+}

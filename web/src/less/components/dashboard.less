@@ -1,0 +1,479 @@
+
+.map-categories {
+    position: absolute;
+    z-index: 900;
+    top: 20px;
+    right: 20px;
+    width: 250px;
+    background-color: fade(#292c29, 80%);
+    font-size: 14px;
+
+    li {
+        display: block;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 15px 17px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.15s;
+
+        &:hover {
+            background-color: fade(#292c29, 45%);
+        }
+    }
+    .mpc-active {
+        background-color: fade(#292c29, 80%);
+        color: @Yellow;
+
+        svg {
+            fill: @Yellow;
+        }
+    }
+    svg {
+        float: left;
+        width: 22px;
+        height: 22px;
+        margin: -3px 0;
+        fill: white;
+    }
+    span {
+        display: inline-block;
+        padding-left: 11px;
+    }
+    .mpc-item-graffiti {
+        svg {
+            margin: -7px -4px;
+            width: 30px;
+            height: 30px;
+        }
+    }
+    .mpc-item-water-leak {
+        svg {
+            width: 36px;
+            height: 56px;
+            margin: -14px -8px
+        }
+        span {
+            padding-left: 13px;
+        }
+    }
+    .mpc-item-dumping {
+        svg {
+            width: 22px;
+            height: 26px;
+            margin: -2px 0;
+        }
+    }
+    .mpc-item-road-defect {
+        svg {
+            margin: -3px 0;
+        }
+    }
+    .mpc-item-light-bulb {
+        svg {
+            width: 28px;
+            height: 28px;
+            margin: -3px -4px;
+        }
+    }
+    .mpc-item-tree {
+        svg {
+            width: 25px;
+            height: 25px;
+            margin: -3px -3px;
+        }
+    }
+}
+.lang-fa .map-categories {
+    right: auto;
+    left: 20px;
+    width: 260px;
+
+    svg {
+        float: right;
+    }
+    span {
+        padding-left: 0;
+        padding-right: 11px;
+    }
+}
+
+.dashboard-tabs {
+    display: block;
+    margin: 25px 20px;
+    border-bottom: 4px solid fade(@Dark, 80%);
+    text-align: center;
+    .clearfix;
+
+    a,
+    li {
+        position: relative;
+        display: inline-block;
+        margin-right: 1px;
+        padding: 10px 15px;
+        background-color: rgb(235, 235, 235);
+        color: #777;
+        transition-duration: 0.15s;
+        cursor: pointer;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:hover {
+            background-color: rgb(220, 220, 220);
+            color: #555;
+        }
+    }
+    .tab-active,
+    .tab-active:hover {
+        background-color: fade(@Dark, 80%);
+        color: #fff;
+    }
+}
+
+.lang-fa .dashboard-tabs {
+    > a {
+        float: right;
+
+        > span {
+            margin: 0 29px;
+        }
+
+        &:last-child {
+            margin-right: 6px;
+        }
+        &:first-child {
+            margin-right: 0;
+
+            > span {
+                margin: 0 30px;
+            }
+        }
+    }
+}
+
+.dashboard-reports {
+    margin: 0 20px;
+    font-size: 14px;
+
+    li {
+        position: relative;
+        display: block;
+        margin-bottom: 5px;
+        padding: 20px;
+        min-height: 80px;
+        background-color: white;
+        border-left: 3px solid @Orange;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        }
+        &[data-action-status="completed"] {
+            border-color: @Green;
+        }
+        &[data-action-status="declined"] {
+            border-color: #999;
+        }
+    }
+    h3 {
+        margin-bottom: 5px;
+        font-size: inherit;
+    }
+    .dashboard-report-image {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 60px;
+        height: 60px;
+        background-size: cover;
+    }
+    .dashboard-report-status {
+        display: inline-block;
+        padding: 3px 5px;
+        background-color: @Orange;
+        color: white;
+        font-size: 12px;
+        // color: @Orange;
+    }
+    .dashboard-report-status-completed {
+        background-color: @Green;
+    }
+    .dashboard-report-status-declined {
+        background-color: #999;
+    }
+}
+.lang-fa .dashboard-reports {
+    .dashboard-report-image {
+        right: auto;
+        left: 10px;
+    }
+}
+
+.dashboard-report-modal-content {
+    display: none;
+
+    > div {
+        padding-right: 50px;
+    }
+
+    b {
+        display: block;
+        margin-bottom: 3px;
+    }
+    p, img {
+        margin-bottom: 20px;
+    }
+    img {
+        max-width: 100%;
+    }
+    .dashboard-report-modal-map {
+        height: 250px;
+        margin-bottom: 20px;
+        margin-top: 5px;
+    }
+    .dashboard-report-modal-status {
+        margin-bottom: 18px;
+
+        span {
+            display: inline-block;
+            padding: 3px 5px;
+            background-color: @Orange;
+            color: white;
+            font-style: normal;
+        }
+    }
+    .dashboard-report-modal-status-completed span {
+        background-color: @Green;
+    }
+    .dashboard-report-modal-status-declined span {
+        background-color: #999;
+    }
+}
+.lang-fa .dashboard-report-modal-content {
+    > div {
+        padding-right: inherit;
+        padding-left: 50px;
+    }
+}
+
+
+
+.stats {
+    display: inline-block;
+    width: 100%;
+    padding: 30px;
+    color: black;
+    font-weight: 300;
+    text-align: center;
+
+    ul {
+        .clearfix;
+    }
+    li {
+        display: inline-block;
+        width: 33.33%;
+        background-color: rgba(255, 255, 255, 0.85);
+        border-top: 4px solid @Green;
+        padding: 20px 0 30px;
+        float: left;
+
+        &:first-of-type {
+            border-top-color: @Orange;
+        }
+        &:last-of-type {
+            border-top-color: @Red;
+        }
+    }
+    b {
+        display: block;
+        margin-bottom: 5px;
+        color: black;
+        font-size: 6em;
+        font-weight: 200;
+    }
+}
+
+.latest-reports-list {
+    min-height: inherit;
+
+    h2 {
+        margin-bottom: 1em;
+        font-weight: bold;
+        font-size: 2em;
+        text-align: center;
+    }
+}
+
+.dashboard-charts {
+    margin: 10px 30px 0;
+
+    h2 {
+        margin-top: 1.8em;
+        margin-bottom: 1em;
+        font-weight: bold;
+        font-size: 2em;
+        text-align: center;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+    > div {
+        height: 500px;
+    }
+}
+
+
+
+
+.marker-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto !important;
+    height: auto !important;
+    margin-left: -18px!important;
+    margin-top: -20px !important;
+
+    > div {
+        position: relative;
+        border: 3px solid currentColor;
+        border-radius: 100%;
+        color: fade(@Red, 90%);
+        // color: rgba(255, 255, 255, 0.85);
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.03);
+
+        > span {
+            display: block;
+            position: relative;
+            width: 24px;
+            height: 24px;
+            margin: 3px;
+            border-radius: 100%;
+            background-color: currentColor;
+            text-align: center;
+
+            i {
+                font-style: normal;
+                color: white;
+                // color: #333;
+            }
+        }
+    }
+}
+.marker-icon-small {
+    > div {
+        > span {
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+        }
+    }
+}
+.marker-icon-medium {
+    > div {
+        > span {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+    }
+}
+.marker-icon-large {
+    > div {
+        > span {
+            width: 75px;
+            height: 75px;
+            line-height: 75px;
+        }
+    }
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    top: 13px;
+    right: 13px;
+    font-size: 20px;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.7);
+    transition-duration: 0.15s;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: fade(#000, 85%);
+}
+.leaflet-popup-content {
+    min-width: 150px;
+    color: #fff;
+}
+.map-popup {
+    padding-bottom: 10px;
+
+    > span {
+        display: block;
+        font-size: 24px;
+        color: @Yellow;
+    }
+    > h4 {
+        margin: 10px 0 0;
+        color: @Green;
+        font-weight: normal;
+        text-transform: capitalize;
+    }
+    > p {
+        margin: 0;
+        line-height: 1.2;
+        font-size: 16px;
+    }
+}
+
+
+
+
+.map-reports-list {
+    margin-right: 55px;
+
+    li {
+        position: relative;
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        min-height: 60px;
+        background-color: white;
+        border-left: 3px solid @Orange;
+        background-color: #f5f5f5;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f9f9f9;
+        }
+        &[data-action-status="completed"] {
+            border-left-color: @Green;
+        }
+        &[data-action-status="declined"] {
+            border-left-color: #999;
+        }
+    }
+    .dashboard-report-image {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        background-size: cover;
+    }
+    .dashboard-report-modal-content {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #dcdcdc;
+
+        > div {
+            padding-right: 0;
+        }
+    }
+}

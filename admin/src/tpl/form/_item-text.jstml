@@ -1,0 +1,5 @@
+<% if (data.settings.multiline) { %>
+    <textarea rows="5" cols="30"><%=data.response.value%></textarea>
+<% } else { %>
+    <input type="text" value="<%=data.response.value%>" />
+<% } %>

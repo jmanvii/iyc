@@ -1,0 +1,16 @@
+<% if (data.settings.allow_multiple === false) { %>
+    <% if (data.options.length === 2) { %>
+        <div class="form-radio-buttons">
+            <% data.options.forEach(function (option) { %>
+                <label><input type="radio" name="radio-<%=data.id%>" value="<%=option.id%>"><%=option.label%></label>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <select>
+            <option></option>
+            <% data.options.forEach(function (option) { %>
+                <option value="<%=option.id%>"><%=option.label%></option>
+            <% }); %>
+        </select>
+    <% } %>
+<% } %>

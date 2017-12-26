@@ -1,0 +1,34 @@
+<div id="map" class="map">
+    <div id="map-canvas" class="map-canvas"></div>
+    <div id="map-player" class="map-player">
+        <input class="date-from" type="text" readonly="readonly" value="">
+        <span class="button-play"></span>
+        <span class="button-pause"></span>
+        <input class="date-to" type="text" readonly="readonly" value="">
+        <div class="sub-controls">
+            <span class="button-stop"></span>
+            <span class="button-prev"></span>
+            <span class="button-next"></span>
+            <div class="slider-line"></div>
+        </div>
+    </div>
+</div>
+
+<ul class="dashboard-tabs">
+    <li href="/" class="tab-active">
+        <span><%=APP.LANG.text('all-reports')%></span>
+    </li>
+    <% data.categorizationItem.options.forEach(function (option) { %>
+        <li href="/?item_id=<%=data.categorizationItem.id%>&amp;option_id=<%=option.id%>" data-item-id="<%=data.categorizationItem.id%>" data-option-id="<%=option.id%>">
+            <span><%=option.label%></span>
+        </li>
+    <% }); %>
+</ul>
+
+
+<div class="dashboard-reports">
+    <h2><%=APP.LANG.text('reports')%></h2>
+    <ul id="dashboard-reports-container"></ul>
+</div>
+
+<div id="footer" class="footer"><div>&copy; ImproveYourCity</div></div>

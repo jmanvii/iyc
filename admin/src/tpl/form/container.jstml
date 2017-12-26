@@ -1,0 +1,12 @@
+<div class="submit-report-form">
+    <input type="hidden" name="response-id" value="<%=data.response.response_id%>" />
+    <h2><%=APP.LANG.text('website:update-report')%></h2>
+    <% if (data.form && Array.isArray(data.form.items)) { %>
+        <% data.form.items.forEach(function (item) { %>
+            <% item._parentDataObject = data; %>
+            <% item.response = APP.findObject(data.response.items, { item_id: item.id }); %>
+            <%=APP.TEMPLATE.form._item(item)%>
+        <% }); %>
+    <% } %>
+    <div class="form-error-message"></div>
+</div>

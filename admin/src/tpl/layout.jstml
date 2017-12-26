@@ -1,0 +1,32 @@
+<header id="header" class="header">
+    <img src="/img/logo.png" />
+    <nav id="nav" class="nav">
+        <a href="/" class="n-active" data-translation-key="nav-reports"></a>
+        <% if (APP.currentUser.permission <= 50) { %>
+            <a href="/translations" data-translation-key="nav-translations"></a>
+            <!-- <a href="/datalab" data-translation-key="nav-datalab"></a> -->
+        <% } %>
+    </nav>
+    <nav id="sub-nav" class="sub-nav">
+        <% if (location.pathname.indexOf('/translations') !== -1) { %>
+            <a href="/translations/ui" data-translation-key="nav-ui-translations"></a>
+            <a href="/translations/form" data-translation-key="nav-form-translations"></a>
+            <button class="h-save-button">
+                <span data-translation-key="save-form"></span>
+                <svg><use xlink:href="/img/sprite.svg#icon-loading"></svg>
+                <em data-translation-key="form-saved"></em>
+            </button>
+        <% } else if (location.pathname.indexOf('/datalab') !== -1) { %>
+            <select>
+                <option>g</option>
+            </select>
+        <% } %>
+    </nav>
+    <div class="userbar">
+        <a href="/logout" data-translation-key="logout"></a>
+    </div>
+</header>
+
+<section id="main" class="main">
+    {{yield}}
+</section>

@@ -1,0 +1,19 @@
+<% if (data.settings.allow_multiple === false) { %>
+    <% if (data.options.length === 2) { %>
+        <div class="form-radio-buttons">
+            <% data.options.forEach(function (option) { %>
+                <label>
+                    <input type="radio" name="radio-<%=data.id%>"" data-item-id="<%=data.id%>" value="<%=option.id%>" <% if (data.response.option_id == option.id) { %> checked <% } %>>
+                    <%=option.label%>
+                </label>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <select>
+            <option></option>
+            <% data.options.forEach(function (option) { %>
+                <option value="<%=option.id%>" <% if (data.response.option_id == option.id) { %> selected <% } %>><%=option.label%></option>
+            <% }); %>
+        </select>
+    <% } %>
+<% } %>

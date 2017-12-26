@@ -1,0 +1,33 @@
+<div class="form-item" 
+     data-id="<%=data.id%>"
+     data-type="<%=data.type%>"
+     data-is-optional="<%=data.settings.optional%>"
+     data-show-if="<%=data.settings.show_if%>"
+>
+    <h4>
+        <%=data.label%>
+        <% if (data.settings.optional) { %>
+            <span>(<%=APP.LANG.text('website:optional')%>)</span>
+        <% } %>
+    </h4>
+
+    <% if (data.description) { %>
+        <p><%=data.description%></p>
+    <% } %>
+
+    <% if (data.type === 'choice') { %>
+        <%=APP.TEMPLATE.form._itemDropdown(data)%>
+    <% } else if (data.type === 'image') { %>
+        <%=APP.TEMPLATE.form._itemImage(data)%>
+    <% } else if (data.type === 'text') { %>
+        <%=APP.TEMPLATE.form._itemText(data)%>
+    <% } else if (data.type === 'location-search') { %>
+        <%=APP.TEMPLATE.form._itemLocationSearch(data)%>
+    <% } %>
+
+    <% if (Array.isArray(data.items)) { %>
+        <% data.items.forEach(function (subItem) { %>
+            <%=APP.TEMPLATE.form._item(subItem)%>
+        <% }); %>
+    <% } %>
+</div>

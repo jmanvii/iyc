@@ -1,0 +1,6 @@
+<label><input type="file" accept="image/jpeg, image/png, image/gif" />Upload</label>
+<div class="form-image-thumbnails" style="display:block">
+    <% if (data.response.value) { %>
+        <img src="/files/<%=data.response.value%>" />
+    <% } %>
+</div>

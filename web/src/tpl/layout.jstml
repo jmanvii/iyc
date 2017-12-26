@@ -1,0 +1,13 @@
+<header id="header" class="header">
+    <a id="logo" class="logo" href="/"><img src="/img/logo-en.png" /></a>
+    <nav id="nav" class="nav">
+        <a href="/"><%=APP.LANG.text('website:homepage')%></a>
+        <!-- <a href="/reports"><%=APP.LANG.text('website:browse-reports')%></a> -->
+        <a href="/about"><%=APP.LANG.text('website:about')%></a>
+        <a href="/submit-report"><%=APP.LANG.text('website:submit-report')%></a>
+    </nav>
+</header>
+
+<div id="main" class="main">
+    {{yield}}
+</div>

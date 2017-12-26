@@ -1,0 +1,7 @@
+<% if (Array.isArray(data)) { %>
+    <ul class="map-reports-list">
+        <% data.forEach(function (report) { %>
+            <%=APP.TEMPLATE._dashboardReportItem(report)%>
+        <% }); %>
+    </ul>
+<% } %>

@@ -1,0 +1,5 @@
+<div class="form-map">
+    <div class="form-map-canvas"></div>
+    <input type="text" value="<%=data.response.value.name%>" />
+    <ul></ul>
+</div>

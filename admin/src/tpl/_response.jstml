@@ -1,0 +1,48 @@
+<div class="rl-item" data-id="<%=data.response_id%>" data-status="<%=data.status%>">
+    <% if (APP.currentUser.settings.is_council) { %>
+        <div class="rl-item-buttons">
+            <label>
+                <%=APP.LANG.text('item-status')%> 
+                <span class="rl-status rl-action-status-<%=data.action_status_id%>">
+                    <%=data.action_status%>
+                </span>
+            </label>
+            <% if (data.action_status_id == 2) { %>
+                <div class="rl-item-buttons-sub-container">
+                    <label style="margin-bottom:5px;">Action:</label>
+                    <div><button class="rl-item-button-complete"><%=(APP.LANG.text('button-complete') || 'Complete')%></button></div>
+                    <div><button class="rl-item-button-decline"><%=(APP.LANG.text('button-decline') || 'Decline')%></button></div>
+                </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="rl-item-buttons">
+            <label>
+                <%=APP.LANG.text('item-status')%> 
+                <span class="rl-status rl-status-<%=data.status.toLowerCase()%>"><%=data.status%></span>
+            </label>
+            <% if (data.status !== 'Active') { %>
+                <div><button class="rl-item-button-approve"><%=APP.LANG.text('button-approve')%></button></div>
+            <% } %>
+            <div><button class="rl-item-button-edit" href="/edit?id=<%=data.response_id%>"><%=APP.LANG.text('button-edit')%></button></div>
+            <div><button class="rl-item-button-delete"><%=APP.LANG.text('button-delete')%></button></div>
+        </div>
+    <% } %>
+    <ul class="rl-item-content">
+        <li class="rl-item-content-id"><b>ID</b><%=data.response_id%></li>
+        <% data.items.forEach(function (item) { %>
+            <li class="rl-item-content-type-<%=item.item_type%>">
+                <b><%=item.item_label%></b>
+                <% if (item.item_type == 'image') { %>
+                    <img src="/files/<%=item.value%>" />
+                <% } else if (item.item_type == 'location-search') { %>
+                    <% try { item.value = JSON.parse(item.value); } catch (e) { item.value = {} } %>
+                    <span><%=item.value.name%></span>
+                    <a href="https://maps.google.com/maps?q=loc:<%=item.value.lat%>,<%=item.value.lng%>&amp;z=15" target="_blank">See on Google Maps</a>
+                <% } else { %>
+                    <span><%=(item.option_label || item.value || '<i>' + APP.LANG.text('no-response') + '</i>')%></span>
+                <% } %>
+            </li>
+        <% }); %>
+    </ul>
+</div>

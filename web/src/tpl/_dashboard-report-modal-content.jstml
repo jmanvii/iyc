@@ -1,0 +1,31 @@
+<div class="dashboard-report-modal-content">
+    <div class="dashboard-report-modal-content-wrapper">
+        <div class="dashboard-report-modal-status dashboard-report-modal-status-<%=data.action_status.toLowerCase()%>">
+            <b><%=APP.LANG.text('website:status')%></b> <span><%=APP.LANG.text('action-status-' + data.action_status_id)%></span>
+        </div>
+        <% data.items.forEach(function (item) { %>
+            <% if (item.item_type === 'image') { %>
+                <b><%=item.item_label%></b>
+                <img src="<%=APP.fileUrl(item.value)%>" />
+            <% } else if (item.item_type === 'location-search') {%>
+                <% if (!data.hideLocationItem) { %>
+                    <% if (typeof item.value === 'string') { item.value = JSON.parse(item.value); } %>
+                    <b><%=item.item_label%></b>
+                    <span><%=item.value.name%></span>
+                    <div class="dashboard-report-modal-map" data-lat="<%=item.value.lat%>" data-lng="<%=item.value.lng%>"></div>
+                <% } %>
+            <% } else { %>
+                <b><%=item.item_label%></b>
+                <p><%=(item.option_label || item.value)%></p>
+            <% } %>
+        <% }); %>
+        <% if (data.council_message) { %>
+            <b>Council's message</b>
+            <p><%=data.council_message%></p>
+            <% if (data.council_uploaded_image) { %>
+                <b>New Photo</b>
+                <img src="<%=APP.fileUrl(data.council_uploaded_image)%>" />
+            <% } %>
+        <% } %>
+    </div>
+</div>

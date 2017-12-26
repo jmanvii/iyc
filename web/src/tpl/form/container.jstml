@@ -1,0 +1,13 @@
+<div id="submit-report-form" class="submit-report-form">
+    <h2><%=APP.LANG.text('website:submit-report')%></h2>
+    <% if (data.form && Array.isArray(data.form.items)) { %>
+        <% data.form.items.forEach(function (item) { %>
+            <%=APP.TEMPLATE.form._item(item)%>
+        <% }); %>
+    <% } %>
+    <div id="submit-form-error-message" class="form-error-message"></div>
+    <button type="submit" value="" class="form-button">
+        <span><%=APP.LANG.text('website:submit')%></span>
+        <svg><use xlink:href="/img/sprite.svg#icon-loading"></use></svg>
+    </button>
+</div>

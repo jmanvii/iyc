@@ -1,0 +1,4 @@
+<div class="form-success-message">
+    <h2><%=APP.LANG.text('website:form-success-message-heading')%></h2>
+    <p><%=APP.LANG.text('website:form-success-message')%></p>
+</div>

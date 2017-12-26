@@ -1,0 +1,19 @@
+<li data-response-id="<%=data.response_id%>" data-action-status="<%=data.action_status.toLowerCase()%>">
+    <% data.items.forEach(function (item) { %>
+        <% if (item.item_settings.categorization_item) { return; } %>
+        <% if (item.item_type === 'image') { %>
+            <div class="dashboard-report-image" style="background-image:url(<%=APP.fileUrl(item.value)%>)"></div>
+        <% } else if (item.item_type === 'location-search') { %>
+        <% } else if (item.item_type === 'choice') { %>
+        <% } else if (item.item_settings.content_role === 'title') { %>
+            <h3><%=item.value%></h3>
+        <% } else if (item.item_settings.content_role === 'description') { %>
+            <!-- <p><%=item.value%></p> -->
+        <% } else { %>
+            <!-- <b><%=item.item_label%></b><br />
+            <%=(item.option_label || item.value)%><br /><br /> -->
+        <% } %>
+    <% }); %>
+    <div class="dashboard-report-status dashboard-report-status-<%=data.action_status.toLowerCase()%>"><%=APP.LANG.text('action-status-' + data.action_status_id)%></div>
+    <%=APP.TEMPLATE._dashboardReportModalContent(data)%>
+</li>
