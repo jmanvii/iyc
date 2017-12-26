@@ -10,6 +10,9 @@ module.exports = function (APP) {
     APP.UPLOAD = {};
 
 
+    var validExtensions = ['.jpg', '.jpeg', '.gif', '.png'];
+
+
     APP.UPLOAD.fileFromFormData = function (params, callback) {
         var form = new APP.lib.multiparty.Form({
             autoFields: false,
@@ -27,13 +30,15 @@ module.exports = function (APP) {
 
             Object.keys(files).forEach(function (fieldName) {
                 files[fieldName].forEach(function (file) {
-                    uploadedFiles.push({
-                        field_name: file.fieldName,
-                        filename: APP.lib.path.basename(file.path),
-                        original_filename: file.originalFilename,
-                        mime_type: file.headers['content-type'],
-                        size: file.size
-                    });
+                    if (validExtensions.indexOf(APP.lib.path.extname(file.path)) !== -1) {
+                        uploadedFiles.push({
+                            field_name: file.fieldName,
+                            filename: APP.lib.path.basename(file.path),
+                            original_filename: file.originalFilename,
+                            mime_type: file.headers['content-type'],
+                            size: file.size
+                        });
+                    }
                 });
             });
 
