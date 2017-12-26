@@ -20,7 +20,8 @@ APP.lib = {
     multiparty:  require('multiparty'),
     bcrypt:      require('bcrypt'),
     uuid:        require('node-uuid'),
-    db:          require('postgresql-query')
+    db:          require('postgresql-query'),
+    escapeHtml:  require('escape-html')
 };
 
 

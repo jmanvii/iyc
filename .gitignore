@@ -1,7 +1,12 @@
-assets/*
-!assets/.gitignore
-protected/runtime/*
-!protected/runtime/.gitignore
-protected/data/*.db
-themes/classic/views/
+# OS X
+*.DS_Store
 
+# Node.Js
+node_modules
+
+# Assets
+assets
+
+# Compiled stuff
+admin/src/tpl/templates.js
+web/src/tpl/templates.js

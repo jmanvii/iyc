@@ -40,7 +40,7 @@
                     <span><%=item.value.name%></span>
                     <a href="https://maps.google.com/maps?q=loc:<%=item.value.lat%>,<%=item.value.lng%>&amp;z=15" target="_blank">See on Google Maps</a>
                 <% } else { %>
-                    <span><%=(item.option_label || item.value || '<i>' + APP.LANG.text('no-response') + '</i>')%></span>
+                    <span><%=APP.escapeHtml(item.option_label || item.value || '<i>' + APP.LANG.text('no-response') + '</i>')%></span>
                 <% } %>
             </li>
         <% }); %>

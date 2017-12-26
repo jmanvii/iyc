@@ -16,7 +16,7 @@
                 <% } %>
             <% } else { %>
                 <b><%=item.item_label%></b>
-                <p><%=(item.option_label || item.value)%></p>
+                <p><%=APP.escapeHtml(item.option_label || item.value)%></p>
             <% } %>
         <% }); %>
         <% if (data.council_message) { %>

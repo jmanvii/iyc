@@ -12,7 +12,7 @@ __jstml += '\n        ';
 __jstml += '\n        ';
  if (item.item_type === 'image') { 
 __jstml += '\n            <div class="dashboard-report-image" style="background-image:url('+
-( (__t = (APP.fileUrl(item.value))) == null ? '' : __t ) +
+( (__t = (APP.fileUrl(APP.escapeHtml(item.value)))) == null ? '' : __t ) +
 ')"></div>\n        ';
  } else if (item.item_type === 'location-search') { 
 __jstml += '\n        ';
@@ -20,17 +20,17 @@ __jstml += '\n        ';
 __jstml += '\n        ';
  } else if (item.item_settings.content_role === 'title') { 
 __jstml += '\n            <h3>'+
-( (__t = (item.value)) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.value))) == null ? '' : __t ) +
 '</h3>\n        ';
  } else if (item.item_settings.content_role === 'description') { 
 __jstml += '\n            <!-- <p>'+
-( (__t = (item.value)) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.value))) == null ? '' : __t ) +
 '</p> -->\n        ';
  } else { 
 __jstml += '\n            <!-- <b>'+
 ( (__t = (item.item_label)) == null ? '' : __t ) +
 '</b><br />\n            '+
-( (__t = ((item.option_label || item.value))) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.option_label || item.value))) == null ? '' : __t ) +
 '<br /><br /> -->\n        ';
  } 
 __jstml += '\n    ';
@@ -83,7 +83,7 @@ __jstml += '\n            ';
 __jstml += '\n                <b>'+
 ( (__t = (item.item_label)) == null ? '' : __t ) +
 '</b>\n                <p>'+
-( (__t = ((item.option_label || item.value))) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.option_label || item.value))) == null ? '' : __t ) +
 '</p>\n            ';
  } 
 __jstml += '\n        ';
@@ -370,7 +370,7 @@ __jstml += '\n        ';
 __jstml += '\n            <h4>'+
 ( (__t = (item.item_label.replace(/_/g, ' '))) == null ? '' : __t ) +
 '</h4>\n            <p>'+
-( (__t = ((item.option_label || item.value))) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.option_label || item.value))) == null ? '' : __t ) +
 '</p>\n        ';
  } 
 __jstml += '\n    ';
@@ -425,7 +425,7 @@ __jstml += '\n                        ';
 __jstml += '\n                            <div class="rli-text">\n                                <span>'+
 ( (__t = (item.item_label)) == null ? '' : __t ) +
 '</span>\n                                <p>'+
-( (__t = (item.value)) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.value))) == null ? '' : __t ) +
 '</p>\n                            </div>\n                        ';
  } 
 __jstml += '\n                    ';
@@ -439,7 +439,7 @@ __jstml += '\n                                    '+
 '\n                                ';
  } else { 
 __jstml += '\n                                    '+
-( (__t = ((item.value || 'No Answer'))) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.value || 'No Answer'))) == null ? '' : __t ) +
 '\n                                ';
  } 
 __jstml += '\n                            </p>\n                        </div>\n                    ';
@@ -473,7 +473,7 @@ __jstml += '\n                    ';
 __jstml += '\n                        <div class="rli-text">\n                            <span>'+
 ( (__t = (item.item_label)) == null ? '' : __t ) +
 '</span>\n                            <p>'+
-( (__t = (item.value)) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.value))) == null ? '' : __t ) +
 '</p>\n                        </div>\n                    ';
  } 
 __jstml += '\n                ';
@@ -487,7 +487,7 @@ __jstml += '\n                                '+
 '\n                            ';
  } else { 
 __jstml += '\n                                '+
-( (__t = ((item.value || 'No Answer'))) == null ? '' : __t ) +
+( (__t = (APP.escapeHtml(item.value || 'No Answer'))) == null ? '' : __t ) +
 '\n                            ';
  } 
 __jstml += '\n                        </p>\n                    </div>\n                ';

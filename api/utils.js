@@ -419,6 +419,14 @@ module.exports = function (APP) {
 
 
     //
+    // Remove all HTML tags from a string.
+    //
+    APP.util.stripHtmlTags = function (str) {
+        return typeof str === 'string' ? str.replace(/<[^>]+>/ig, '') : '';
+    };
+
+
+    //
     // An empty function. a.k.a noop function.
     //
     APP.util.doNothing = function () {};
