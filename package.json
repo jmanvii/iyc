@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bcrypt": "^0.8.7",
+    "bcrypt": "^5.0.0",
     "jsesc": "^2.2.0",
     "minimist": "^1.2.0",
     "postgresql-query": "^0.0.3",
